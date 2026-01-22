@@ -115,7 +115,7 @@ check_install_status() {
 # 开机自启动
 auto_start() {
 	if [[ x"${release}" == x"centos" ]]; then
-        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/nswl01/kms-server/main/kms-server-deploy.sh; then
+        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/nswl01/kms-server/main/kms; then
             echo -e "${Error} Failed to download KMS Server script."
             exit 1
         fi
