@@ -11,7 +11,7 @@ Win/Office激活用服务器软件
 ## 执行如下命令：
 
 ```shell
-wget --no-check-certificate https://raw.githubusercontent.com/nswl01/kms-server/kms-server-deploy.sh && bash kms-server-deploy.sh
+wget --no-check-certificate https://raw.githubusercontent.com/nswl01/kms-server/main/kms-server-deploy.sh && bash kms-server-deploy.sh
 ```
 
 
