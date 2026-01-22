@@ -327,7 +327,7 @@ check_uninstall() {
 		;;
 	esac
 }
-echo -e "  vlmcsd服务端 一键管理脚本 ${Red_font_prefix}Powered By Mrxn.Net${Font_color_suffix}
+echo -e "  vlmcsd服务端 一键管理脚本 ${Red_font_prefix}Powered By qylx.uno${Font_color_suffix}
 
   ${Green_font_prefix}1.${Font_color_suffix} 安装vlmcsd服务端
   ${Green_font_prefix}2.${Font_color_suffix} 查看vlmcsd的状态
