@@ -120,7 +120,7 @@ auto_start() {
             exit 1
         fi
     elif [[ x"${release}" == x"debian" || x"${release}" == x"ubuntu" ]]; then 
-        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/nswl01/kms-server/tree/main/kms-debian; then
+        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/nswl01/kms-server/main/kms-debian; then
             echo -e "${Error} Failed to download KMS Server script."
             exit 1
         fi
