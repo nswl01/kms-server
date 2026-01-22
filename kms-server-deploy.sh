@@ -115,12 +115,12 @@ check_install_status() {
 # 开机自启动
 auto_start() {
 	if [[ x"${release}" == x"centos" ]]; then
-        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/kms-server-deploy.sh; then
+        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/nswl01/kms-server-deploy.sh; then
             echo -e "${Error} Failed to download KMS Server script."
             exit 1
         fi
     elif [[ x"${release}" == x"debian" || x"${release}" == x"ubuntu" ]]; then
-        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/kms-server-deploy.sh/master/kms-debian; then
+        if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/nswl01/kms-server-deploy.sh/master/kms-debian; then
             echo -e "${Error} Failed to download KMS Server script."
             exit 1
         fi
@@ -171,7 +171,7 @@ start_install() {
 	[ -d vlmcsd ] && cd vlmcsd || echo -e "${Error} Failed to git clone vlmcsd."
 	make
 	if [ $? -ne 0 ]; then
-        echo -e "${Error} 编译KMS 服务端出错,请重试或者将出错信息提交到 https://github.com/kms-server-deploy.sh/issues."
+        echo -e "${Error} 编译KMS 服务端出错,请重试或者将出错信息提交到 https://github.com/nswl01/kms-server-deploy.sh/issues."
         exit 1
     fi
 	auto_start
