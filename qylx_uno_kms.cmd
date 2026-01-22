@@ -1,5 +1,5 @@
-chcp 936 
-@echo off&PUSHD  &TITLE KMS����� 
+chcp 65001 
+@echo off&PUSHD  &TITLE KMS激活工具 
 mode con cols=75 lines=25 
 setlocal EnableDelayedExpansion&color 70 & cd /d "%~dp0"
 %1 %2
@@ -10,32 +10,32 @@ mshta vbscript:createobject("shell.application").shellexecute("%~s0","goto :star
 :start
 set KMS_Sev=kms.qylx.uno
 cls
-echo VL�汾ϵ��windows��office����ű�;
-echo ���ȸ�лvlmcsd������,��GitHub��Ŀ��ַ:https://github.com/Wind4/vlmcsd
-echo PC�ű�����:nothing_poi8;https://chibarika.site                                                   
+echo VL版本系列windows和office激活脚本;
+echo 首先感谢vlmcsd的作者,其GitHub项目地址:https://github.com/Wind4/vlmcsd
+echo PC脚本作者:nothing_poi8;https://chibarika.site                                                   
 echo 
 echo 
 echo 
                                                        
 
-echo �ҵĸ��˲���:https://qylx.uno
-echo kms��������ַ:kms.qylx.uno,����ϲ���ֶ����������;
-echo �������뷴�����ҵ�����:guoming3133@gmail.com;
-echo ���ڼ���뼤����������������......�����ĵȴ�;
+echo 我的个人博客:https://qylx.uno
+echo kms服务器地址:kms.qylx.uno,方便喜欢手动激活的朋友;
+echo 有问题请反馈到我的邮箱:guoming3133@gmail.com;
+echo 正在检查与激活服务器的连接情况......请耐心等待;
 echo.
-ping kms.qylx.uno | find "��ʱ"  > NUL &&  goto fail
-ping kms.qylx.uno | find "Ŀ������"  > NUL &&  goto fail
-echo �ɹ������Ϸ���������
+ping kms.qylx.uno | find "超时"  > NUL &&  goto fail
+ping kms.qylx.uno | find "目标主机"  > NUL &&  goto fail
+echo 成功连接上服务器……
 ver | find "6.0." > NUL &&  goto winvista
 ver | find "6.1." > NUL &&  goto win7
 ver | find "6.2." > NUL &&  goto win8
 ver | find "6.3." > NUL &&  goto win81
 ver | find "10.0." > NUL &&  goto win10
-echo δ�ҵ����ʵ�NT6ϵͳ��������WinXP��Win2003��
+echo 未找到合适的NT6系统，可能是WinXP或Win2003。
 goto office
 
 :winvista
-echo ��ǰΪWindows Vista/2008��
+echo 当前为Windows Vista/2008。
 set Business=YFKBB-PQJJV-G996G-VWGXY-2V3X8
 set BusinessN=HMBQG-8H2RH-C77VX-27R82-VMQBT
 set Enterprise=VKK3X-68KWM-X2YGT-QR4M6-4BWMV
@@ -52,7 +52,7 @@ set ServerEnterpriseItanium=4DWFP-JF3DJ-B7DTH-78FJB-PDRHK
 goto windowsstart
 
 :win7
-echo ��ǰΪWindows 7/2008 R2��
+echo 当前为Windows 7/2008 R2。
 set Professional=FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4
 set ProfessionalN=MRPKT-YTG23-K7D7T-X2JMM-QY7MG
 set ProfessionalE=W82YF-2Q76Y-63HXB-FGJG9-GF7QX
@@ -67,7 +67,7 @@ set ServerDatacenter=74YFP-3QFB3-KQT8W-PMXWJ-7M648
 set ServerEnterpriseItanium=GT63C-RJFQ3-4GMB6-BRFB9-CB83V
 goto windowsstart
 :win8
-echo ��ǰΪWindows 8/2012��
+echo 当前为Windows 8/2012。
 set Professional=NG4HW-VH26C-733KW-K6F98-J8CK4
 set ProfessionalN=XCVCF-2NXM9-723PB-MHCB7-2RYQQ
 set Core=BN3D2-R7TKB-3YPBD-8DRP2-27GG4
@@ -83,7 +83,7 @@ set ServerDatacenter=48HP8-DN98B-MYWDG-T2DCC-8W83P
 
 goto windowsstart
 :win81
-echo ��ǰΪWindows 8.1/2012 R2��
+echo 当前为Windows 8.1/2012 R2。
 set Professional=GCRJD-8NW9H-F2CDX-CCM8D-9D6T9
 set ProfessionalN=HMCNV-VVBFX-7HMBH-CTY9B-B4FXY
 set Enterprise=MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
@@ -93,7 +93,7 @@ set ServerStandard=D2N9P-3P6X9-2R39C-7RTCD-MDVJX
 set ServerDatacenter=W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9
 goto windowsstart
 :win10
-echo ��ǰΪWindows 10��
+echo 当前为Windows 10。
 set Core=TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 set CoreCountrySpecific=PVMJN-6DFY6-9CCP6-7BKTT-D3WVR
 set CoreN=3KHY7-WNT83-DGQKR-F7HPR-844BM
@@ -114,20 +114,20 @@ if defined %EditionID% (
 	cscript //Nologo %windir%\system32\slmgr.vbs /skms kms.qylx.uno
 	cscript //Nologo %windir%\system32\slmgr.vbs /ato
 ) else (
-	echo δ�ҵ����кš���
+	echo 未找到序列号……
 )
 goto office
 :office
-echo ��鰲װ��office����
+echo 检查安装的office……
 call :GetOfficePath 14 Office2010
 call :ActOffice 14 Office2010
 call :GetOfficePath 15 Office2013
 call :ActOffice 15 Office2013
 if exist "%ProgramFiles%\Microsoft Office\Office16\ospp.vbs" set _Office16Path=%ProgramFiles%\Microsoft Office\Office16
 if exist "%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs" set _Office16Path=%ProgramFiles(x86)%\Microsoft Office\Office16
-if DEFINED _Office16Path (echo.&echo �ѷ��� Office2016
+if DEFINED _Office16Path (echo.&echo 已发现 Office2016
     call :ActOffice 16 Office2016
-  ) else (echo.&echo δ���� Office2016)
+  ) else (echo.&echo 未发现 Office2016)
 
 
 echo.&pause
@@ -137,16 +137,16 @@ exit
 if DEFINED _Office%1Path (
     cd /d "!_Office%1Path!"
     if %1 EQU 16 call :Licens16
-    echo.&echo ���Լ��� %2 ...&echo.
+    echo.&echo 尝试激活 %2 ...&echo.
     cscript //nologo ospp.vbs /sethst:kms.qylx.uno >nul
     cscript //nologo ospp.vbs /act | find /i "successful" && (
-        echo.&echo ***** %2 ����ɹ� ***** & echo.) || (echo.&echo ***** %2 ����ʧ�� ***** & echo.)
+        echo.&echo ***** %2 激活成功 ***** & echo.) || (echo.&echo ***** %2 激活失败 ***** & echo.)
 )    
 cd /d "%~dp0"
 goto :EOF
 
 :GetOfficePath
-echo.&echo ���ڼ�� %2 ϵ�в�Ʒ�İ�װ·��...
+echo.&echo 正在检测 %2 系列产品的安装路径...
 set _Office%1Path=
 set _Reg32=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\%1.0\Common\InstallRoot
 set _Reg64=HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Office\%1.0\Common\InstallRoot
@@ -156,7 +156,7 @@ if DEFINED _OfficePath1 (if exist "%_OfficePath1%ospp.vbs" set _Office%1Path=!_O
 if DEFINED _OfficePath2 (if exist "%_OfficePath2%ospp.vbs" set _Office%1Path=!_OfficePath2!)
 set _OfficePath1=
 set _OfficePath2=
-if DEFINED _Office%1Path (echo.&echo �ѷ��� %2) else (echo.&echo δ���� %2)
+if DEFINED _Office%1Path (echo.&echo 已发现 %2) else (echo.&echo 未发现 %2)
 goto :EOF
 
 :Licens16
@@ -179,5 +179,6 @@ goto :EOF
 exit
 :fail
 cls
-echo �޷����ӵ�����������
+echo 无法连接到服务器……
 pause
+
