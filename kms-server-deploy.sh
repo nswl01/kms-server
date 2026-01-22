@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-export PATH
+#PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+#export PATH
 
 echo "#============================================================================="
 echo "# System Required: CentOS 6+/Debian 6+/Ubuntu 14.04+"
