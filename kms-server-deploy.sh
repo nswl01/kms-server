@@ -25,9 +25,9 @@ check_root() {
 check_pid() {
 	PID=$(ps -ef | grep -v grep | grep vlmcsd | awk '{print $2}')
 	if [ ! -z $PID ]; then
-		STATUS=0
+		STAT=0
 	else
-		STATUS=1
+		STAT=1
 	fi
 }
 check_vlmcsd_start() {
@@ -41,9 +41,9 @@ check_vlmcsd_stop() {
 check_vlmcsd_status() {
 	check_DAMON_status
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} vlmcsd正在运行" && exit 1
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Tip} 未发现vlmcsd服务,请尝试重启vlmcsd服务端或者是安装vlmcsd服务端"
 	fi
 }
@@ -106,9 +106,9 @@ install_depend() {
 }
 check_install_status() {
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} vlmcsd安装成功!"
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Error} vlmcsd安装失败!"
 	fi
 }
@@ -252,52 +252,52 @@ check_DAMON_status() {
 vlmcsd_restart() {
 	check_DAMON_status
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} 重启vlmcsd服务端中..."
 		kill $PID
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Info} vlmcsd服务端未启动,启动中..."
 	fi
 	# $DAEMON -L 0.0.0.0:1688 -l vlmcsd.log
 	/etc/init.d/kms restart
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} Succeeded."
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Info} Failed."
 	fi
 }
 vlmcsd_stop() {
 	check_DAMON_status
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} 停止vlmcsd服务端..."
 		kill $PID
 		check_pid
-		if [ $STATUS = 0 ]; then
+		if [ $STAT = 0 ]; then
 			echo -e "${Info} Failed."
-		elif [ $STATUS = 1 ]; then
+		elif [ $STAT = 1 ]; then
 			echo -e "${Info} Succeeded."
 		fi
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Info} vlmcsd没有运行"
 	fi
 }
 vlmcsd_start() {
 	check_DAMON_status
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} vlmcsd服务端已经运行."
 		exit 0
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Info} vlmcsd服务端未启动,启动中..."
 		# $DAEMON -L 0.0.0.0:1688 -l vlmcsd.log
 		/etc/init.d/kms restart
 	fi
 	check_pid
-	if [ $STATUS = 0 ]; then
+	if [ $STAT = 0 ]; then
 		echo -e "${Info} Succeeded."
-	elif [ $STATUS = 1 ]; then
+	elif [ $STAT = 1 ]; then
 		echo -e "${Info} Failed."
 	fi
 }
