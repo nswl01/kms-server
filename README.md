@@ -1,6 +1,6 @@
 # kms-server
 Win/Office激活用服务器软件
-## 一键搭建kms激活服务端和Windows客户端一键激活脚本
+## 一键搭建kms激活服务端
 
 ## 感谢KMS服务器程序的开发者Wind4
 
